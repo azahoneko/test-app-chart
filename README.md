@@ -6,4 +6,4 @@ In order to test app, launch the provided back-end.
 
 To start the project enter `npm install` then `npm run  start`.
 
-![picture](https://drive.google.com/file/d/1dzlVmjHaYHeVreCc9A8lbn_d-GSgE2Sv/view?usp=sharing)
+![Image](https://drive.google.com/uc?export=view&id=1dzlVmjHaYHeVreCc9A8lbn_d-GSgE2Sv)
