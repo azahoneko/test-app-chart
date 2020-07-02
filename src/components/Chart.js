@@ -7,6 +7,7 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from "recharts";
 import DataTable from "./DataTable";
+import {CAC40, NASDAQ, strokeColors} from "../constants";
 
 const Container = styled.div`
     margin: 20px;
@@ -20,8 +21,8 @@ const ChartWrapper = ({ getData, data, changeElementData }) => {
         return () => toggleUpdate(false)
     }, [])
 
-    const toggleUpdate = (condition) => {
-        if (condition) {
+    const toggleUpdate = (startUpdate) => {
+        if (startUpdate) {
             interval = setInterval(() => {
                 getData()
             }, 1000)
@@ -36,18 +37,11 @@ const ChartWrapper = ({ getData, data, changeElementData }) => {
         }
     }
 
-    const getRefactoredData = () => {
-        const chartData = [];
-        data.forEach((e, i) => {
-            chartData.push({
-                name: i + 1,
-                NASDAQ: e.stocks.NASDAQ,
-                CAC40: e.stocks.CAC40,
-            })
-        })
-
-        return chartData
-    }
+    const getRefactoredData = () => data.map((elem, index) => ({
+        name: index + 1,
+        NASDAQ: elem.stocks.NASDAQ,
+        CAC40: elem.stocks.CAC40,
+    }))
 
     return (
         <Container>
@@ -55,9 +49,6 @@ const ChartWrapper = ({ getData, data, changeElementData }) => {
                 width={800}
                 height={500}
                 data={getRefactoredData()}
-                margin={{
-                    top: 5, right: 30, left: 20, bottom: 5,
-                }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
@@ -65,13 +56,13 @@ const ChartWrapper = ({ getData, data, changeElementData }) => {
                 <Tooltip />
                 <Legend />
                 <Line
-                    dataKey="NASDAQ"
-                    stroke="#33BBFF"
+                    dataKey={NASDAQ}
+                    stroke={strokeColors[0]}
                     animationDuration={0}
                 />
                 <Line
-                    dataKey="CAC40"
-                    stroke="#FFB900"
+                    dataKey={CAC40}
+                    stroke={strokeColors[1]}
                     animationDuration={0}
 
                 />

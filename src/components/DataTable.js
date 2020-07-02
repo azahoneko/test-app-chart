@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { CAC40, NASDAQ, tableItemsNumber } from "../constants";
 
 const Wrapper = styled.div`
     margin-top: 40px;
@@ -45,23 +46,23 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
     const fillEmpty = () => {
         return (
             <>
-                {data.length < 20 ?
-                    Array(20 - data.length)
+                {data.length < tableItemsNumber ?
+                    Array(tableItemsNumber - data.length)
                         .fill()
-                        .map((e, i) => <RowItem key={i} disabled/>)
+                        .map((e, index) => <RowItem key={index} disabled/>)
                     : null}
             </>
         )
     }
     const renderRow = (name) => {
         return (
-            <Row first={name === "NASDAQ"}>
+            <Row first={name === NASDAQ}>
                 <RowName naming>{name}</RowName>
-                {data.map((e, index) =>
+                {data.map((elem, index) =>
                     (
                         <RowItem
-                            key={e.index}
-                            value={e.stocks[name]}
+                            key={elem.index}
+                            value={elem.stocks[name]}
                             onFocus={() => toggleUpdate(false)}
                             onBlur={() => toggleUpdate(true)}
                             onChange={(event) => onChangeData(+event.target.value, name, index)}
@@ -75,8 +76,8 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
     const renderRows = () => {
         return (
             <>
-                {renderRow("NASDAQ")}
-                {renderRow("CAC40")}
+                {renderRow(NASDAQ)}
+                {renderRow(CAC40)}
             </>
         )
     }
