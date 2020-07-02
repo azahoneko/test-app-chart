@@ -1,4 +1,4 @@
-import DataService from "../../services/DataService";
+import { requestData } from "../../services/DataService";
 
 export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS";
 export const UPDATE_DATA_WITH_CHANGED_ELEMENT = "UPDATE_DATA_WITH_CHANGED_ELEMENT";
@@ -10,7 +10,7 @@ export const getDataSuccess = data => ({
 
 export const getData = () => {
     return (dispatch, getState) => {
-        return DataService.getData()
+        return requestData()
             .then(response => {
                 const prevData = getState().dataReducer.data;
                 if (prevData.length && prevData.some(elem => elem.changed)) {
