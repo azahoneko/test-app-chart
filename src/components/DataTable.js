@@ -65,7 +65,7 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
                             value={elem.stocks[name]}
                             onFocus={() => toggleUpdate(false)}
                             onBlur={() => toggleUpdate(true)}
-                            onChange={(event) => onChangeData(+event.target.value, name, index)}
+                            onChange={(event) => onChangeData(event.target.value, name, index)}
                         />
                     )
                 )}
