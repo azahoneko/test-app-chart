@@ -15,8 +15,8 @@ const rootReducer = (state = initialState, action) => {
                         return {
                             ...e,
                             stocks: {
-                                NASDAQ: typeof prevElemChangedValue.stocks.NASDAQ === 'number' ? prevElemChangedValue.stocks.NASDAQ : e.stocks.NASDAQ,
-                                CAC40: typeof prevElemChangedValue.stocks.CAC40 === 'number'  ? prevElemChangedValue.stocks.CAC40 : e.stocks.CAC40
+                                NASDAQ: typeof prevElemChangedValue.stocks.NASDAQ === "number" ? prevElemChangedValue.stocks.NASDAQ : e.stocks.NASDAQ,
+                                CAC40: typeof prevElemChangedValue.stocks.CAC40 === "number"  ? prevElemChangedValue.stocks.CAC40 : e.stocks.CAC40
                             },
                             changed: prevElemChangedValue.changed
                         }

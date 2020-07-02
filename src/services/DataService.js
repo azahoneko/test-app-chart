@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { API } from '../constants.js';
+import axios from "axios";
+import { API } from "../constants.js";
 
 
 class DataService {

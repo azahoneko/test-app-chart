@@ -1,7 +1,7 @@
 import DataService from "../../services/DataService";
 
-export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS'
-export const CHANGE_ELEMENT_DATA = 'CHANGE_ELEMENT_DATA'
+export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS";
+export const CHANGE_ELEMENT_DATA = "CHANGE_ELEMENT_DATA";
 
 export const getDataSuccess = data => ({
     type: GET_DATA_SUCCESS,

@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { bindActionCreators } from 'redux'
+import React, { useEffect } from "react";
+import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { getData, changeElementData } from "../redux/actions";
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-} from 'recharts';
+} from "recharts";
 import DataTable from "./DataTable";
 
 const Container = styled.div`
@@ -83,12 +83,12 @@ const ChartWrapper = ({ getData, data, changeElementData }) => {
             />
         </Container>
     )
-}
+};
 const mapStateToProps = (state) => {
     return {
         data: state.dataReducer.data,
     };
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
@@ -103,4 +103,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ChartWrapper)
+)(ChartWrapper);

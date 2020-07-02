@@ -1,12 +1,12 @@
-import React from 'react';
-import styled, { css } from 'styled-components'
+import React from "react";
+import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-`
+`;
 
 const Row = styled.div`
     display: inline-flex;
@@ -19,7 +19,7 @@ const Row = styled.div`
         text-align: left; 
         border-top: 1px solid #ccc;;
     `}
-`
+`;
 
 const RowItem = styled.input`
     border: none;
@@ -30,7 +30,7 @@ const RowItem = styled.input`
     height: 24px;
     box-sizing: border-box;
     font-size: 12px;
-`
+`;
 const RowName = styled.div`
     border-right: 1px solid #ccc;
     padding: 3px 5px;
@@ -39,7 +39,7 @@ const RowName = styled.div`
     text-align: left; 
     width: 100px;
     font-size: 14px;
-`
+`;
 
 const DataTable = ({ data, toggleUpdate, onChangeData }) => {
     const fillEmpty = () => {
@@ -55,7 +55,7 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
     }
     const renderRow = (name) => {
         return (
-            <Row first={name === 'NASDAQ'}>
+            <Row first={name === "NASDAQ"}>
                 <RowName naming>{name}</RowName>
                 {data.map((e, index) =>
                     (
@@ -75,8 +75,8 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
     const renderRows = () => {
         return (
             <>
-                {renderRow('NASDAQ')}
-                {renderRow('CAC40')}
+                {renderRow("NASDAQ")}
+                {renderRow("CAC40")}
             </>
         )
     }
@@ -85,6 +85,6 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
             {renderRows()}
         </Wrapper>
     )
-}
+};
 
 export default DataTable;
