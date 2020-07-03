@@ -54,21 +54,26 @@ const DataTable = ({ data, toggleUpdate, onChangeData }) => {
             </>
         )
     }
+
+    const onRowItemFocus = () => toggleUpdate(false)
+    const onRowItemBlur = () => toggleUpdate(true)
+    const onRowItemChange = (event, name, index) => onChangeData(event.target.value, name, index)
+
+    const renderRowItems = (name) =>
+        data.map((elem, index) => (
+            <RowItem
+                key={elem.index}
+                value={elem.stocks[name]}
+                onFocus={onRowItemFocus}
+                onBlur={onRowItemBlur}
+                onChange={(event) => onRowItemChange(event, name, index)}
+            />
+        ));
     const renderRow = (name) => {
         return (
             <Row first={name === NASDAQ}>
                 <RowName naming>{name}</RowName>
-                {data.map((elem, index) =>
-                    (
-                        <RowItem
-                            key={elem.index}
-                            value={elem.stocks[name]}
-                            onFocus={() => toggleUpdate(false)}
-                            onBlur={() => toggleUpdate(true)}
-                            onChange={(event) => onChangeData(event.target.value, name, index)}
-                        />
-                    )
-                )}
+                {renderRowItems(name)}
                 {fillEmpty()}
             </Row>
         )
