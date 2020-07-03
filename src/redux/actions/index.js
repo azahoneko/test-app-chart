@@ -1,7 +1,6 @@
 import { requestData } from "../../services/DataService";
-
-export const GET_DATA_SUCCESS = "GET_DATA_SUCCESS";
-export const UPDATE_DATA_WITH_CHANGED_ELEMENT = "UPDATE_DATA_WITH_CHANGED_ELEMENT";
+import { GET_DATA_SUCCESS, UPDATE_DATA_WITH_CHANGED_ELEMENT } from "./constants";
+import {numberRegex} from "../../constants";
 
 export const getDataSuccess = data => ({
     type: GET_DATA_SUCCESS,
@@ -9,28 +8,25 @@ export const getDataSuccess = data => ({
 });
 
 export const getData = () => {
-    return (dispatch, getState) => {
-        return requestData()
-            .then(response => {
-                const prevData = getState().dataReducer.data;
-                if (prevData.length && prevData.some(elem => elem.changed)) {
-                    const filteredData = response.data.map((elem, index) => {
-                        const prevElemChangedValue = prevData[index]
-                        return prevElemChangedValue && prevElemChangedValue.changed ? {
-                            ...elem,
-                            stocks: {
-                                NASDAQ: typeof prevElemChangedValue.stocks.NASDAQ === "number" ? prevElemChangedValue.stocks.NASDAQ : elem.stocks.NASDAQ,
-                                CAC40: typeof prevElemChangedValue.stocks.CAC40 === "number"  ? prevElemChangedValue.stocks.CAC40 : elem.stocks.CAC40
-                            },
-                            changed: prevElemChangedValue.changed
-                        } : elem
-                    })
-                    dispatch(getDataSuccess(filteredData));
-                } else {
-                    dispatch(getDataSuccess(response.data));
-                }
-                return response;
+    return async (dispatch, getState) => {
+        const response = await requestData();
+        const prevData = getState().dataReducer.data;
+        if (prevData.length && prevData.some(elem => elem.changed)) {
+            const filteredData = response.data.map((elem, index) => {
+                const prevElemChangedValue = prevData[index]
+                return prevElemChangedValue && prevElemChangedValue.changed ? {
+                    ...elem,
+                    stocks: {
+                        NASDAQ: numberRegex.test(prevElemChangedValue.stocks.NASDAQ) ? prevElemChangedValue.stocks.NASDAQ : elem.stocks.NASDAQ,
+                        CAC40: numberRegex.test(prevElemChangedValue.stocks.CAC40) ? prevElemChangedValue.stocks.CAC40 : elem.stocks.CAC40
+                    },
+                    changed: prevElemChangedValue.changed
+                } : elem
             })
+            dispatch(getDataSuccess(filteredData));
+        } else {
+            dispatch(getDataSuccess(response.data));
+        }
     };
 }
 

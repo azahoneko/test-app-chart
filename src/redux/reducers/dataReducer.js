@@ -1,4 +1,4 @@
-import { GET_DATA_SUCCESS, UPDATE_DATA_WITH_CHANGED_ELEMENT } from "../actions";
+import { GET_DATA_SUCCESS, UPDATE_DATA_WITH_CHANGED_ELEMENT } from "../actions/constants";
 
 const initialState = {
     data: [],

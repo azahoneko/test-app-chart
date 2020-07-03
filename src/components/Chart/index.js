@@ -7,7 +7,7 @@ import {
 import { getData, changeElementData } from "../../redux/actions";
 import { Container } from "./styled"
 import DataTable from "../DataTable/index";
-import {CAC40, NASDAQ, strokeColors} from "../../constants";
+import {CAC40, NASDAQ, strokeColors, numberRegex} from "../../constants";
 
 let interval;
 
@@ -80,15 +80,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators(
-        {
-            getData,
-            changeElementData
-        },
-        dispatch,
-    );
-};
+const mapDispatchToProps ={ getData, changeElementData};
 
 export default connect(
     mapStateToProps,
