@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { bindActionCreators } from "redux";
-import styled from "styled-components";
 import { connect } from "react-redux";
-import { getData, changeElementData } from "../redux/actions";
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import DataTable from "./DataTable";
-import {CAC40, NASDAQ, strokeColors} from "../constants";
+import { getData, changeElementData } from "../../redux/actions";
+import { Container } from "./styled"
+import DataTable from "../DataTable/index";
+import {CAC40, NASDAQ, strokeColors} from "../../constants";
 
-const Container = styled.div`
-    margin: 20px;
-`
 let interval;
 
 const ChartWrapper = ({ getData, data, changeElementData }) => {
