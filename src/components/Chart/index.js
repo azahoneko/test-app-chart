@@ -40,12 +40,14 @@ const ChartWrapper = ({ getData, data, changeElementData }) => {
         CAC40: elem.stocks.CAC40,
     }))
 
+    const refactoredData = getRefactoredData()
+
     return (
         <Container>
             <LineChart
                 width={800}
                 height={500}
-                data={getRefactoredData()}
+                data={refactoredData}
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
